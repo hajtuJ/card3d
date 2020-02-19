@@ -17,7 +17,10 @@ const Decoration = (props) => {
     const [alphaMap, bumpMap, noiseMap, envMap] = textures;
 
     const [decor] = useGlobalState('decor');
-    const colorMetalness = useMemo(() => new THREE.Color(decor.metalnessColor), []);
+    const [color, metalnessColor] = useMemo(() => ([
+        new THREE.Color(decor.color),
+        new THREE.Color(decor.metalnessColor),
+    ]), [decor]);
 
     return (
         <mesh
@@ -30,10 +33,10 @@ const Decoration = (props) => {
             <meshStandardMaterial
                 flatShading={false}
                 attach="material"
-                color={decor.color}
-                emissive={colorMetalness}
-                roughness={.2}
+                color={color}
+                emissive={metalnessColor}
                 metalness={.9}
+                roughness={.2}
                 roughnessMap={noiseMap}
                 alphaMap={alphaMap}
                 alphaTest={.3}
