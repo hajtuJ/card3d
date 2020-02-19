@@ -4,6 +4,7 @@ import { Canvas } from 'react-three-fiber'
 import Controlls from './Controlls';
 import Lights from './elements/scene/Lights';
 import Effects from './Effects';
+import { useGlobalState } from '../state/GlobalState';
 
 const Composition = ({ children }) => {
 
@@ -30,16 +31,19 @@ const Composition = ({ children }) => {
         }
     }
 
+    const [camera] = useGlobalState('camera');
+
     return (
         <Canvas
             camera={{
-                fov: 50,
-                position: [10, 20, 25]
+                fov: 50
             }}
+            updateDefaultCamera
             shadowMap
-            updateDefaultCamera={true}
             pixelRatio={2}
-            
+            onCreated={({camera}) => {
+                camera.position.set( camera.initPosition );
+            }}
         >
             <fog attach="fog" args={[0xffffff, 40, 80]} />
             <Lights {...scene.lights}/>

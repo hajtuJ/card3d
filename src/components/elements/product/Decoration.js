@@ -2,6 +2,7 @@ import React, { useMemo } from 'react'
 import * as THREE from 'three'
 import { useLoader } from 'react-three-fiber'
 import texturePath from './../../../helpers/texturePath'
+import { useGlobalState } from '../../../state/GlobalState';
 
 const Decoration = (props) => {
 
@@ -15,7 +16,8 @@ const Decoration = (props) => {
     const textures = useLoader(THREE.TextureLoader, floorTextures);
     const [alphaMap, bumpMap, noiseMap, envMap] = textures;
 
-    const colorMetalness = useMemo(() => new THREE.Color(`#6f5d40`), []);
+    const [decor] = useGlobalState('decor');
+    const colorMetalness = useMemo(() => new THREE.Color(decor.metalnessColor), []);
 
     return (
         <mesh
@@ -28,7 +30,7 @@ const Decoration = (props) => {
             <meshStandardMaterial
                 flatShading={false}
                 attach="material"
-                color={`#d6c68f`}
+                color={decor.color}
                 emissive={colorMetalness}
                 roughness={.2}
                 metalness={.9}

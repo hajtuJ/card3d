@@ -1,26 +1,28 @@
 import React from 'react'
-import * as THREE from 'three'
 import Decoration from './Decoration'
 import Paper from './Paper'
+import GlobalState from './../../../state/GlobalState'
 
 const A5Card = () => {
 
-    const config = {
-        width: 14.8,
-        height: 21.0,
-        textRepeat: 6,
-        rotate: [THREE.MathUtils.degToRad(-20), 0, 0]
-    }
+    const { useGlobalState } = GlobalState;
+    const [, setTouchingProduct] = useGlobalState('touchingProduct');
+    const [product] = useGlobalState('product');
+
+    const touchingHandler = (touching = false) => setTouchingProduct(touching);
 
     return (
         <group
-            rotation={config.rotate}
-            position={[0, config.height/2 -.6, 0]}
+            onPointerLeave={() => touchingHandler()}
+            onPointerEnter={() => touchingHandler(true)}
+
+            rotation={product.rotate}
+            position={[0, product.height/2 -.6, 0]}
             castShadow
             receiveShadow
         >
-            <Paper {...config} />
-            <Decoration {...config} />
+            <Paper {...product} />
+            <Decoration  {...product} />
         </group>
     );
 }
