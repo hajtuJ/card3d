@@ -1,15 +1,10 @@
 import React from 'react'
 import * as THREE from 'three'
-import { useLoader } from 'react-three-fiber'
-import texturePath from './../../../helpers/texturePath'
+import { useGlobalState } from '../../../state/GlobalState';
 
 const Paper = (props) => {
-
-    const floorTextures = [
-        texturePath('a5card/preview-3LxCdL9GFrg-cmyk')
-    ];
-
-    const [map] = useLoader(THREE.TextureLoader, floorTextures);
+    
+    const [{paper}] = useGlobalState('textures');
 
     return (
         <mesh
@@ -22,7 +17,7 @@ const Paper = (props) => {
             />
             <meshStandardMaterial
                 attach="material"
-                map={map}
+                map={paper[0]}
                 color={`#ffffff`}
                 side={THREE.DoubleSide}
             />

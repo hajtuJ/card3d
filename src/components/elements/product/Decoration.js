@@ -6,17 +6,9 @@ import { useGlobalState } from '../../../state/GlobalState';
 
 const Decoration = (props) => {
 
-    const floorTextures = [
-        texturePath('gold/preview-3LxCdL9GFrg-foil'),
-        texturePath('gold/preview-3LxCdL9GFrg-height'),
-        texturePath('gold/noise'),
-        texturePath('envMap', 'jpg')
-    ];
-
-    const textures = useLoader(THREE.TextureLoader, floorTextures);
-    const [alphaMap, bumpMap, noiseMap, envMap] = textures;
-
+    const [{decor: decorT}] = useGlobalState('textures');
     const [decor] = useGlobalState('decor');
+
     const [color, metalnessColor] = useMemo(() => ([
         new THREE.Color(decor.color),
         new THREE.Color(decor.metalnessColor),
@@ -37,12 +29,12 @@ const Decoration = (props) => {
                 emissive={metalnessColor}
                 metalness={.9}
                 roughness={.2}
-                roughnessMap={noiseMap}
-                alphaMap={alphaMap}
+                roughnessMap={decorT[0]}
+                alphaMap={decorT[1]}
                 alphaTest={.3}
-                bumpMap={bumpMap}
+                bumpMap={decorT[2]}
                 bumpScale={.01}
-                envMap={envMap}
+                envMap={decorT[3]}
             />
         </mesh>
     );
