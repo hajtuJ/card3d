@@ -1,35 +1,30 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import * as THREE from 'three';
 import { Canvas } from 'react-three-fiber'
 import Controlls from './Controlls';
 import Lights from './elements/scene/Lights';
+import Effects from './Effects';
 
 const Composition = ({ children }) => {
 
 
-    const GlobalConfig = {
-        shadow: {
-            mapSize: {
-                width: 2048,
-                height: 2048
-            }
-        }
+    const SHADOWS = {
+        shadowMapWidth: 512,
+        shadowMapHeight: 512
     }
+
     const SceneConfig = {
         lights: {
             directional: {  
                 position: [20, 50, 200],
-                intensity: .6,
-                color: '#ffffff',
-                // castShadow: true
+                intensity: .4,
+                color: '#ffffff'
             },
             spot: {
-                intensity: .5,
+                intensity: .4,
                 position: [5, 100, 50],
-                // angle: 1,
-                // penumbra: 1,
                 castShadow: true,
-                // shadow: GlobalConfig.shadow
+                ...SHADOWS
             }
 
         }
@@ -39,11 +34,12 @@ const Composition = ({ children }) => {
         <Canvas
             camera={{
                 fov: 50,
-                position: [10, 10, 20]
+                position: [-10, 20, 25]
             }}
             shadowMap
+            updateDefaultCamera={true}
             pixelRatio={2}
-            onCreated={({gl}) => {
+            onCreated={({gl, camera}) => {
                 gl.shadowMap.type = THREE.PCFSoftShadowMap;
             }}
         >
@@ -52,6 +48,9 @@ const Composition = ({ children }) => {
             <directionalLight intensity={1} color={`#ffffff`}/>
             <Controlls />
             { children }
+            <Suspense fallback={null}>
+                <Effects />
+            </Suspense>
         </Canvas>
     );
 }

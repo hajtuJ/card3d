@@ -6,14 +6,12 @@ import Loader from './Loader'
 
 const CompositionContainer = () => {
     return (
-        <Suspense fallback={<Loader />}>
             <Composition>
                 <Suspense fallback={null}>
                     <Floor />
                     <A5Card />
                 </Suspense>
             </Composition>
-        </Suspense>
     )
 }
 

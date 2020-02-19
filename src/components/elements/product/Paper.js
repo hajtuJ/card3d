@@ -6,14 +6,10 @@ import texturePath from './../../../helpers/texturePath'
 const Paper = (props) => {
 
     const floorTextures = [
-        texturePath('a5card/preview-3LxCdL9GFrg-cmyk'),
-        texturePath('a5card/paper-structure'),
-        // texturePath('project/wb'),
+        texturePath('a5card/preview-3LxCdL9GFrg-cmyk')
     ];
 
-    const [map, bumpMap] = useLoader(THREE.TextureLoader, floorTextures);
-    // const dispMap = useLoader(THREE.TextureLoader, floorTextures[1]);
-    // const specMap = useLoader(THREE.TextureLoader, floorTextures[2]);
+    const [map] = useLoader(THREE.TextureLoader, floorTextures);
 
     return (
         <mesh

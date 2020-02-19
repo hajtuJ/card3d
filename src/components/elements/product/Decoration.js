@@ -6,14 +6,14 @@ import texturePath from './../../../helpers/texturePath'
 const Decoration = (props) => {
 
     const floorTextures = [
-        texturePath('gold/matcap/gold_flake'),
         texturePath('gold/preview-3LxCdL9GFrg-foil'),
         texturePath('gold/preview-3LxCdL9GFrg-height'),
         texturePath('gold/noise'),
         texturePath('envMap', 'jpg')
     ];
 
-    const [matcapMap, alphaMap, bumpMap, noiseMap, envMap] = useLoader(THREE.TextureLoader, floorTextures);
+    const textures = useLoader(THREE.TextureLoader, floorTextures);
+    const [alphaMap, bumpMap, noiseMap, envMap] = textures;
 
     const colorMetalness = useMemo(() => new THREE.Color(`#6f5d40`), []);
 
@@ -37,6 +37,7 @@ const Decoration = (props) => {
                 alphaTest={.1}
                 bumpMap={bumpMap}
                 bumpScale={.02}
+                envMap={envMap}
             />
         </mesh>
     );

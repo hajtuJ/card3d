@@ -1,7 +1,15 @@
 import React from 'react'
 import * as THREE from 'three'
+import { useLoader } from 'react-three-fiber';
+import texturePath from '../../../../helpers/texturePath';
 
 const Floor = () => {
+
+    const texturesToLoad = [
+        texturePath('envMap', 'jpg')
+    ];
+
+    const [envMap] = useLoader(THREE.TextureLoader, texturesToLoad);
 
     return (
         <mesh
@@ -16,6 +24,7 @@ const Floor = () => {
             <meshStandardMaterial 
                 attach="material" 
                 color={"#999999"}
+                envMap={envMap}
             />
         </mesh>
     );

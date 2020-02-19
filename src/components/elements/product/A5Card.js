@@ -9,7 +9,7 @@ const A5Card = () => {
         width: 14.8,
         height: 21.0,
         textRepeat: 6,
-        rotate: [THREE.MathUtils.degToRad(-20), THREE.MathUtils.degToRad(-5), 0]
+        rotate: [THREE.MathUtils.degToRad(-20), 0, 0]
     }
 
     return (
