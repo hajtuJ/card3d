@@ -31,19 +31,15 @@ const Composition = ({ children }) => {
         }
     }
 
-    const [camera] = useGlobalState('camera');
-
+    const [{init}] = useGlobalState('camera');
     return (
         <Canvas
             camera={{
-                fov: 50
+                fov: 50,
+                position: init.position
             }}
-            updateDefaultCamera
             shadowMap
             pixelRatio={2}
-            onCreated={({camera}) => {
-                camera.position.set( camera.initPosition );
-            }}
         >
             <fog attach="fog" args={[0xffffff, 40, 80]} />
             <Lights {...scene.lights}/>

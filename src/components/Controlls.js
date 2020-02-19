@@ -8,7 +8,8 @@ extend({ OrbitControls });
 
 const Controlls = () => {
 
-    const [touchingProduct] = useGlobalState('touchingProduct')
+    const [touchingProduct] = useGlobalState('touchingProduct');
+    const [{init: initCamera}] = useGlobalState('camera');
 
     const { camera, gl } = useThree();
     const orbitRef = useRef(null);
@@ -18,19 +19,18 @@ const Controlls = () => {
     centerX = 0,
     posToAnime = 10;
 
-    const countCameraPos = useCallback( 
-        () => {
-            const newpos = pos + speed;
-            setPos(newpos);
-            return centerX + (Math.sin(newpos) * posToAnime)
+    //counting camera position while moving === not touching product
+    const countCameraPos = useCallback(() => {
+            const newPosition = pos + speed;
+            setPos(newPosition);
+            return centerX + (Math.sin(newPosition) * posToAnime);
         },
-        [posToAnime, centerX, pos, speed]
-    );
+    [posToAnime, centerX, pos, speed]);
 
     useFrame(() => {
         if (orbitRef && orbitRef.current) {
             orbitRef.current.update();
-            camera.lookAt(0,12,0);
+            camera.lookAt(initCamera.lookAt);
         }
         if (!touchingProduct) {
             camera.position.x = countCameraPos();
@@ -43,6 +43,8 @@ const Controlls = () => {
             args={[camera, gl.domElement]}
             enabled={touchingProduct}
             enableZoom={true}
+            maxDistance={45}
+            minDistance={30}
             enablePan={false}
             enableKeys={false}
             maxAzimuthAngle={MathUtils.degToRad(17)}
