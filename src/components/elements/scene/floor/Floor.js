@@ -6,10 +6,11 @@ import texturePath from '../../../../helpers/texturePath';
 const Floor = () => {
 
     const texturesToLoad = [
-        texturePath('envMap', 'jpg')
+        texturePath('envMap', 'jpg'),
+        texturePath('floor/concrete')
     ];
 
-    const [envMap] = useLoader(THREE.TextureLoader, texturesToLoad);
+    const [envMap, map] = useLoader(THREE.TextureLoader, texturesToLoad);
 
     return (
         <mesh
@@ -24,6 +25,7 @@ const Floor = () => {
             <meshStandardMaterial 
                 attach="material" 
                 color={"#999999"}
+                map={map}
                 envMap={envMap}
             />
         </mesh>
