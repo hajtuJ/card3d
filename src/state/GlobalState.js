@@ -18,6 +18,28 @@ const initialState = {
             lookAt: new THREE.Vector3(0,10,0),
             rotate: [THREE.MathUtils.degToRad(0), 0, 0]
         }
+    },
+    scene: {
+        lights: {
+            directional: {  
+                position: [20, 50, 200],
+                intensity: .3,
+                color: '#ffffff'
+            },
+            spot: {
+                intensity: .3,
+                position: [5, 100, 50],
+                castShadow: true,
+                shadowMapWidth: 512,
+                shadowMapHeight: 512
+            }
+        }
+    },
+    loading: true,
+    textures: {
+        floor: [],
+        paper: [],
+        decor: []
     }
 };
 
