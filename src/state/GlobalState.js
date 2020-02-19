@@ -13,7 +13,11 @@ const initialState = {
     decors: [DECORS.GOLD, DECORS.SILVER, DECORS.COPPER],
     decor: DECORS.GOLD,
     camera: {
-        initPosition: [10, 28, 20]
+        init: {
+            position: new THREE.Vector3(10, 28, 25),
+            lookAt: new THREE.Vector3(0,10,0),
+            rotate: [THREE.MathUtils.degToRad(0), 0, 0]
+        }
     }
 };
 
