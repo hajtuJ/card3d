@@ -31,12 +31,12 @@ const Decoration = (props) => {
                 color={`#d6c68f`}
                 emissive={colorMetalness}
                 roughness={.2}
-                metalness={.8}
+                metalness={.9}
                 roughnessMap={noiseMap}
                 alphaMap={alphaMap}
-                alphaTest={.1}
+                alphaTest={.3}
                 bumpMap={bumpMap}
-                bumpScale={.02}
+                bumpScale={.01}
                 envMap={envMap}
             />
         </mesh>
