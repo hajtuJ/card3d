@@ -13,9 +13,8 @@ const A5Card = () => {
 
     return (
         <group
-            onPointerLeave={() => touchingHandler()}
-            onPointerEnter={() => touchingHandler(true)}
-
+            onPointerUp={() => touchingHandler()}
+            onPointerDown={() => touchingHandler(true)}
             rotation={product.rotate}
             position={[0, product.height/2 -.6, 0]}
             castShadow
