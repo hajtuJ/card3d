@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useThree, useFrame, extend } from 'react-three-fiber';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import * as THREE from 'three';
+import { MathUtils } from 'three';
 
 extend({ OrbitControls });
 
@@ -13,7 +13,6 @@ const Controlls = () => {
     useFrame(() => {
         if (orbitRef && orbitRef.current) {
             orbitRef.current.update();
-            console.log(orbitRef.current);
             camera.lookAt(0,10,0);
         }
     });
@@ -23,14 +22,14 @@ const Controlls = () => {
             ref={orbitRef}
             args={[camera, gl.domElement]}
             autoRotate
-            autoRotateSpeed={.6}
+            autoRotateSpeed={.4}
             enableZoom={false}
             enablePan={false}
             enableKeys={false}
-            maxAzimuthAngle={.3}
-            minAzimuthAngle={-.3}
-            minPolarAngle={.5}
-            maxPolarAngle={1.1}
+            maxAzimuthAngle={MathUtils.degToRad(17)}
+            minAzimuthAngle={MathUtils.degToRad(-17)}
+            minPolarAngle={MathUtils.degToRad(33)}
+            maxPolarAngle={MathUtils.degToRad(69)}
         />
     );
 

@@ -10,6 +10,7 @@ const Lights = (props) => {
             <directionalLight  {...props.directional} />
             <spotLight {...props.spot} />
             <spotLight {...props.spot} position={reverseSpotPosition} />
+            <directionalLight intensity={1} color={`#ffffff`}/>
         </>
     )
 }

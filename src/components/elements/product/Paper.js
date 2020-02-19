@@ -23,7 +23,7 @@ const Paper = (props) => {
             <meshStandardMaterial
                 attach="material"
                 map={map}
-                color={`#f5f6ef`}
+                color={`#ffffff`}
                 side={THREE.DoubleSide}
             />
         </mesh>
