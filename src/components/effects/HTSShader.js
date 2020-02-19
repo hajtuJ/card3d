@@ -23,7 +23,7 @@ const HTSShader = ({ effectComposerRef }) => {
         <shaderPass 
             attachArray="passes" 
             args={[HorizontalTiltShiftShader]} 
-            uniforms-h-value={.0010}
+            uniforms-h-value={.0015}
             uniforms-tDiffuse-value={diffuse}
             renderToScreen
         />
