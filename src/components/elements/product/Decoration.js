@@ -1,7 +1,5 @@
 import React, { useMemo } from 'react'
 import * as THREE from 'three'
-import { useLoader } from 'react-three-fiber'
-import texturePath from './../../../helpers/texturePath'
 import { useGlobalState } from '../../../state/GlobalState';
 
 const Decoration = (props) => {

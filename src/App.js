@@ -23,7 +23,7 @@ function App() {
         }).finally(
 			() => setLoading(false)
 		);
-	}, []);
+	}, [setTextures, setLoading]);
 
 	return (
 		loading ? (
