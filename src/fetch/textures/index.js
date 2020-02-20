@@ -3,7 +3,7 @@ import { fetchFloorTextures } from './fetchFloorTextures';
 import { fetchPaperTextures } from './fetchPaperTextures';
 
 export default {
-    fetchDecorTextures,
-    fetchFloorTextures,
-    fetchPaperTextures
+    decor: fetchDecorTextures,
+    floor: fetchFloorTextures,
+    paper: fetchPaperTextures
 };

@@ -1,12 +1,6 @@
 import React from 'react'
+import Preloader from './loader/Preloader'
 
-const Loader = () => {
-    return (
-        <div className="lds-ripple">
-            <div/>
-            <div/>
-        </div>
-    );
-}
+const Loader = ({ isLoading, render }) => isLoading ? <Preloader /> : render();
 
-export default Loader
+export default Loader;

@@ -1,5 +1,5 @@
-import texturePath from "../helpers/texturePath";
-import createLoaders from "../helpers/createLoaders";
+import texturePath from "../../helpers/texturePath";
+import createLoaders from "../../helpers/createLoaders";
 
 export const fetchFloorTextures = () => Promise.all(
     createLoaders([ 

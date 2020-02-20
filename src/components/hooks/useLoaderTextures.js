@@ -1,21 +1,30 @@
-import { useEffect, useState } from 'react';
-import { useGlobalState } from '../state/GlobalState';
+import { useEffect } from 'react';
+import { useGlobalState } from './../../state/GlobalState';
 
-export default (texturesCalls = []) => {
+export default (texturesCalls) => {
 
-const [texturesInit] = useGlobalState('textures');
-    
-    const [setLoading] = useGlobalState('loading');
-    const [textures, setTextures] = useState(texturesInit);
+    const [,setTextures] = useGlobalState('textures');
+    const [loading, setLoading] = useGlobalState('loading');
 
     useEffect(() => {
-        Promise.all(texturesCalls).then(r => {
-            setTextures({
-                ...texturesInit,
-                floor: r[0]
-            })
-        }).finally(() => setLoading(false));
-    }, [])
+        
+        //begin fetch
+        const fetches = Object.values(texturesCalls).map(fetch => fetch());
 
-    return textures;
+        Promise
+            .all(fetches)
+            .then(
+                (r) => {
+                    //create state from result
+                    const callsKeys = Object.keys(texturesCalls);
+                    const collectingPairsOfLabelsAndResults = callsKeys.map((callKey, i) => [callKey, r[i]])
+                    const fetchState = Object.fromEntries(collectingPairsOfLabelsAndResults);
+                    setTextures(fetchState);
+                })
+            .finally(() => setLoading(false));
+
+    }, [texturesCalls, setLoading, setTextures]);
+    
+    return [loading];
+
 }
