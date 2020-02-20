@@ -18,7 +18,6 @@ function App() {
 			fetch.fetchDecorTextures()
 		]).then(
 			([floor, paper, decor]) => {
-				console.log(floor, paper, decor);
             	setTextures({floor: floor, paper: paper, decor: decor});
         }).finally(
 			() => setLoading(false)
